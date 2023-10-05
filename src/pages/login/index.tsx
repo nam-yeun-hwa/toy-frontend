@@ -1,6 +1,10 @@
-import Text from "@/components/ui/Text";
 import styled from "@emotion/styled";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import Text from "components/ui/Text";
+import { instance } from "pages/api";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { IUserSignIn } from "types/common/    commonType";
 
 interface ILoginFormInput {
   id: string;
@@ -8,6 +12,60 @@ interface ILoginFormInput {
 }
 
 export default function login(): JSX.Element {
+  const {} = useQuery(
+    ["login"],
+    async () =>
+      await instance.post<string, IUserSignIn>(
+        "http://localhost:8080/auth/signup",
+        {
+          username: "test@hanmail.net",
+          password: "123456",
+        }
+      ),
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      onSuccess(data: AxiosError) {
+        console.log("data", data.response?.data);
+      },
+    }
+  );
+
+  // const { data, status, isError, error } = useQuery(
+  // 	['getCampaignList', params],
+  // 	async () =>
+  // 		await await instance.get('/api/campaigns', {
+  // 			params: {
+  // 				page: params.page,
+  // 				size: params.size,
+  // 			},
+  // 		}),
+  // 	{
+  // 		onSuccess(data: AxiosError) {
+  // 			console.log('data', data.response?.status);
+  // 		},
+  // 		// useErrorBoundary(error: any, query) {
+  // 		// 	return error.response?.status >= 500;
+  // 		// },
+  // 		suspense: true, // 데이터 불러오기를 위한 Suspense를 활성화하는 옵션
+  // 		// suspense 옵션을 통해 useQuery Hook을 "Suspense를 지원하는 특별한 객체"로 사용합니다.
+  // 		// suspense 옵션이 켜져 있는 경우 Error Boundary를 통한 에러 처리도 가능합니다.
+  // 		// useErrorBoundary: true, // Error Boundary 사용을 위한 옵션. suspense 옵션이 true인 경우에는 기본값이 true로 설정된다.
+  // 		refetchOnWindowFocus: false,
+  // 		refetchOnMount: false,
+  // 		retry: 0,
+  // 		onError(err) {
+  // 			// dispatch(errorModalStateAction.rdxOpenModalToggle(true));
+  // 			// 실패시 호출
+  // 			// (401, 404 같은 error가 아니라 정말 api 호출이 실패한 경우만 호출됩니다.)
+  // 			// 강제로 에러 발생시키려면 api단에서 throw Error 날립니다.
+  // 			// 	주로 4xx 오류는 로컬 콜백으로 처리합니다(5xx 에러는 useErrorBoundary 사용).
+  // 			// 오류를 컴포넌트 각각에서 처리하지 않고 한번에 처리하거나, 사용자에게 알릴 목적이면
+  // 			// QueryCache / MutationCache 의 필드를 사용합니다.
+  // 		},
+  // 	},
+  // );
+
   const methods = useForm<ILoginFormInput>();
   const { setValue } = methods;
 
@@ -23,20 +81,6 @@ export default function login(): JSX.Element {
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmitCreditCardRegister)}>
           <div className="input-contain">
-            {/* TODO:React Hook form을 사용한 Validation을 적용시켜 줍니다. 
-
-            1.아이디 타입은 이메일 형식으로 합니다. 이메일 형식이 아닐 경우 message:
-            '올바른 이메일 주소를 입력하세요.', 
-            
-            2.필수형식이며 
-
-            3. 최소9에서 최대 50자로 체크합니다. 형식에 벗어날 경우 message: '올바른 이메일 주소를
-            입력하세요.' 로 표시합니다. 
-            
-            프롭스롤 통해 Validation을 넣어주며 형식은 Text 컴포넌트를 참고하여 진행 합니다.
-            각각의 궁금한 점 하나하나 질문 하셔도 됩니다. 
-
-            */}
             <Text regName="userId" placeholder="이메일 주소 또는 아이디" />
             <Text
               regName="userId"

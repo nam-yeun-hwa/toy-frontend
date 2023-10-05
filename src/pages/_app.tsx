@@ -1,6 +1,3 @@
-import GlobalStyle from "@/styles/global";
-import "@/styles/globals.css";
-import globalTheme from "@/styles/globalTheme";
 import { ThemeProvider } from "@emotion/react";
 import {
   Hydrate,
@@ -9,10 +6,11 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
+import GlobalStyle from "styles/global";
+import globalTheme from "styles/globalTheme";
 
-export const queryErrorHandler = (error) => {
-  console.log(error, "app queryErrorHandler");
-
+export const queryErrorHandler = () => {
+  // console.log(error, "app queryErrorHandler");
   // toast(`데이터를 가져오지 못했습니다! ${error.message}`);
 };
 
