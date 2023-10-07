@@ -4,6 +4,9 @@ export function setInterceptors(instance: AxiosInstance) {
   // 요청 인터셉터 추가하기
   instance.interceptors.request.use(
     function (config) {
+      if (config.headers) {
+        // config.headers[] = undefined;
+      }
       // 요청이 전달되기 전에 작업 수행
       return config;
     },

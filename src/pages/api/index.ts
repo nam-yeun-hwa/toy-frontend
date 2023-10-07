@@ -5,8 +5,8 @@ function createInstance() {
   const instance = axios.create({
     headers: {
       withCredentials: true,
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Content-Type",
+      //   "Access-Control-Allow-Origin": "*",
+      //   "Access-Control-Allow-Headers": "Content-Type",
       "Content-Type": "application/json",
     },
   });
