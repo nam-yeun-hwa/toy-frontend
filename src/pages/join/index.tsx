@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Text from 'components/ui/Text';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 interface IJoinFormInput {
 	userName: string;
@@ -10,6 +10,16 @@ interface IJoinFormInput {
 
 export default function join(): JSX.Element {
 	const methods = useForm<IJoinFormInput>();
+
+	/**
+	 * @function onSubmitJoin
+	 * @description submitHandler
+	 * @param data
+	 */
+	const onSubmitJoin: SubmitHandler<IJoinFormInput> = data => {
+		console.log(data);
+	};
+
 	return (
 		<JoinContainer className="page_container">
 			<p className="txt">
@@ -18,9 +28,11 @@ export default function join(): JSX.Element {
 				<span>무료로</span> 즐길 수 있어요.
 			</p>
 			<FormProvider {...methods}>
-				<form>
-					<Text regName="joinName" placeholder="이름" />
-					<Text regName="joinId" placeholder="아이디" />
+				<form onSubmit={methods.handleSubmit(onSubmitJoin)}>
+					<div className="input-contain">
+						<Text regName="joinName" placeholder="이름" />
+						<Text regName="joinId" placeholder="아이디" />
+					</div>
 				</form>
 			</FormProvider>
 		</JoinContainer>
@@ -31,8 +43,14 @@ const JoinContainer = styled.div`
 	.txt {
 		font-size: 21px;
 		font-weight: 100;
-		padding: 62px 45px;
+		padding: 62px 25px;
 		color: ${props => props.theme.text.primary};
 		margin: 0;
+	}
+
+	.input-contain {
+		> * {
+			margin-bottom: 12px;
+		}
 	}
 `;

@@ -96,13 +96,10 @@ export default function login(): JSX.Element {
 }
 
 const LoginContainer = styled.div`
-	position: relative;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 0px 20px;
 	.logo {
 		width: 132px;
 		height: 38px;
