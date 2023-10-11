@@ -5,15 +5,15 @@
 // };
 
 const globalTheme = {
-  colors: {
-    primary: "hotpink",
-  },
-  border: {
-    primary: "#e4e4e4",
-  },
-  text: {
-    primary: "#000",
-  },
+	colors: {
+		primary: 'hotpink',
+	},
+	border: {
+		primary: '#e4e4e4',
+	},
+	text: {
+		primary: '#282828',
+	},
 };
 
 export default globalTheme;

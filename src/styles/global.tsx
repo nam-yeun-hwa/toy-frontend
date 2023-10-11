@@ -247,6 +247,15 @@ const style = css`
 			url('/fonts/Apple/AppleSDGothicNeoB.woff') format('woff'),
 			url('/fonts/Apple/AppleSDGothicNeoB.otf') format('truetype');
 	}
+
+	//페이지 컨테이너
+	.page_container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
 `;
 
 const GlobalStyle = () => {

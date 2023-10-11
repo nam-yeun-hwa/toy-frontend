@@ -74,7 +74,7 @@ export default function login(): JSX.Element {
 	const onSubmitCreditCardRegister: SubmitHandler<ILoginFormInput> = data => {};
 
 	return (
-		<LoginContainer>
+		<LoginContainer className="page_container">
 			<div className="logo">
 				<img src="./img/logo.jpg" alt="" />
 			</div>
@@ -97,11 +97,11 @@ export default function login(): JSX.Element {
 
 const LoginContainer = styled.div`
 	position: relative;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
 	padding: 0px 20px;
 	.logo {
 		width: 132px;
