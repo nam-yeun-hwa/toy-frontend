@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
+import { Button } from 'components/ui/Button';
+import { DescBox } from 'components/ui/Desc';
 import Text from 'components/ui/Text';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { ButtonType } from 'types/common/option';
 
 interface IJoinFormInput {
 	userName: string;
@@ -32,7 +35,17 @@ export default function join(): JSX.Element {
 					<div className="input-contain">
 						<Text regName="joinName" placeholder="이름" />
 						<Text regName="joinId" placeholder="아이디" />
+						<DescBox desc={{ paddingBottom: '20px' }}>
+							6~12자 영문, 숫자로 입력해 주세요.
+						</DescBox>
+						<Text regName="password" placeholder="비밀번호" />
+						<Text regName="password_confirm" placeholder="비밀번호 확인" />
+						<DescBox desc={{ paddingBottom: '20px' }}>
+							비밀번호는 영문 대소문자, 숫자, 특수문자(.!@#$%)를 혼합하여
+							8~20자로 입력해 주세요.
+						</DescBox>
 					</div>
+					<Button type={ButtonType.BOTTOM}>다음</Button>
 				</form>
 			</FormProvider>
 		</JoinContainer>
@@ -44,7 +57,7 @@ const JoinContainer = styled.div`
 		font-size: 21px;
 		font-weight: 100;
 		padding: 62px 25px;
-		color: ${props => props.theme.text.primary};
+		color: ${props => props.theme.info.main};
 		margin: 0;
 	}
 
